@@ -71,7 +71,7 @@ echo " DIE           : ".$die.PHP_EOL;
 echo " UNKNOWN       : ".$unknown.PHP_EOL;
 echo " TOTAL         : ".$total.PHP_EOL;
 echo "======================================".PHP_EOL;
-echo "[+] RATIO VALID => $GR".round(RatioCheck($live, $total))."%$DEF".PHP_EOL.PHP_EOL;
+echo "[+] RATIO LIVE => $GR".round(RatioCheck($live, $total))."%$DEF".PHP_EOL.PHP_EOL;
 echo "[!] NOTE : CHECK AGAIN FILE 'unknown.txt' [!]".PHP_EOL;
 echo "This file '".$listname."'".PHP_EOL;
 echo "File saved in folder 'result/' ".PHP_EOL.PHP_EOL;
