@@ -36,6 +36,7 @@ foreach ($lists as $list) {
     curl_setopt($ch, CURLOPT_URL, $api);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    curl_setopt($ch, CURLOPT_USERAGENT, "CURL/COMMAND LINE");
     $x = curl_exec($ch);
     curl_close($ch);
     $js  = json_decode($x, TRUE);
