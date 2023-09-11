@@ -1,1 +1,2 @@
 [ PASTE YOUR CC LIST HERE ]
+[ NOTE : Please don't use cc generator because it can make the API down ]
