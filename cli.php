@@ -34,7 +34,7 @@ echo PHP_EOL.PHP_EOL;
 foreach ($lists as $list) {
     $no++;
 
-    $api = "https://darkxcode.com/checker/cc_checker/test/?apikey=$apikey&cc=$list&proxy=$Proxies&proxyPWD=$proxy_pwd";
+    $api = "https://darkxcode.com/checker/cc_checker/?apikey=$apikey&cc=$list&proxy=$Proxies&proxyPWD=$proxy_pwd";
     // CURL
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $api);
