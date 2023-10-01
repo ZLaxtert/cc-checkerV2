@@ -22,6 +22,6 @@ if (strtolower($mode_proxy) == "off") {
     $Proxies = "";
     $proxy_pass = "";
 } else {
-    $Proxies = GetProxies($proxy_list);
+    $Proxies = GetProxy($proxy_list);
     $proxy_pass = $proxy_pwd;
 }
